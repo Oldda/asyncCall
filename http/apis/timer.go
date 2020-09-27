@@ -47,17 +47,16 @@ func exec(timeStr, requestUrl, requestParams string,jobId uint){
 		log.Println(err)
 	}
 	timer := time.NewTimer(duration)
-	log.Println(<-timer.C,"开始执行任务...")
+	log.Println(<-timer.C,"job running")
 	result,err := client.HttpPost(requestUrl,requestParams)
     if err != nil{
     	log.Println(err)
     }
-    log.Println(result)
     var data map[string]string
     json.Unmarshal([]byte(result),&data)
+    log.Println("result_data:",data)
     job := db.Jobs{ID:jobId}
     db.MysqlEngine.First(&job)
-    log.Println("job row:",job)
     job.RequestTime = uint(time.Now().Unix())
     if data["code"] == "200" || data["code"] == "202"{
         job.Status = 1
@@ -65,4 +64,5 @@ func exec(timeStr, requestUrl, requestParams string,jobId uint){
         job.Status = 2
     }
     db.MysqlEngine.Save(&job)
+    log.Println("job done")
 }

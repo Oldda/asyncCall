@@ -59,7 +59,7 @@ func exec(timeStr, requestUrl, requestParams string,jobId uint){
     db.MysqlEngine.First(&job)
     log.Println("job row:",job)
     job.RequestTime = uint(time.Now().Unix())
-    if data["code"] == "200" && data["msg"] == "SUCCESS"{
+    if data["code"] == "200" || data["code"] == "202"{
         job.Status = 1
     }else{
         job.Status = 2

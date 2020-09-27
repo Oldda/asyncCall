@@ -11,14 +11,6 @@ import(
 )
 
 //延时消费回调
-//参数
-/*
-{
-	"delay":"3600s"/"5m"/"1h"/"1d"最大支持天为单位 表示延迟执行的时间
-	"request_url":"https://xxx.com/xxx" 用于执行回调的url
-	"request_params":{"name":"rpc"} json格式参数列表或对象
-}
-*/
 func HandleTimer(w http.ResponseWriter, r *http.Request){
 	//获取参数
 	body, err := ioutil.ReadAll(r.Body)

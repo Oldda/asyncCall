@@ -52,13 +52,13 @@ func exec(timeStr, requestUrl, requestParams string,jobId uint){
     if err != nil{
     	log.Println(err)
     }
-    var data map[string]string
+    var data map[string]interface{}
     json.Unmarshal([]byte(result),&data)
     log.Println("result_data:",data)
     job := db.Jobs{ID:jobId}
     db.MysqlEngine.First(&job)
     job.RequestTime = uint(time.Now().Unix())
-    if data["code"] == "200" || data["code"] == "202"{
+    if data["code"].(float64) == 200 || data["code"].(float64) == 202{
         job.Status = 1
     }else{
         job.Status = 2

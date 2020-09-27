@@ -1,6 +1,7 @@
 package db
 
 import(
+	"asyncCall/config"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"log"
@@ -27,7 +28,14 @@ var MysqlEngine *gorm.DB
 
 func init(){
 	var err error
-	dns := "root:CgPz7Bf7g1@tcp(106.75.67.17:3306)/xiao_crm?charset=utf8&parseTime=True&loc=Local"
+	config := config.NewConfig("./config","dev","json")
+	db_user := config.GetString("database.db_user")
+	db_host := config.GetString("database.db_host")
+	db_port := config.GetString("database.db_port")
+	db_password := config.GetString("database.db_password")
+	db_name := config.GetString("database.db_name")
+
+	dns := db_user + ":"+ db_password + "@tcp("+ db_host +":" + db_port + ")/" + db_name + "?charset=utf8&parseTime=True&loc=Local"
 	MysqlEngine, err = gorm.Open(mysql.New(mysql.Config{
 		DSN:dns,
 		DefaultStringSize: 256, // string 类型字段的默认长度

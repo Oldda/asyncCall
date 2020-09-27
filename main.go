@@ -8,6 +8,7 @@ import(
 )
 
 func main(){
+
 	addr := utils.GetAddrFromFlag()
 
 	server := server.NewServerMux()

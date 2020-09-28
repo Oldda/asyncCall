@@ -3,6 +3,7 @@ package apis
 import(
 	"asyncCall/db"
 	"time"
+	"log"
 )
 
 func ReExecJob(){
@@ -14,4 +15,5 @@ func ReExecJob(){
 		duration,_ := time.ParseDuration(job.Delay)
 		go exec(duration, job.RequestUrl, job.RequestParams,job.ID)
 	}
+	log.Println("ticker breathing")
 }

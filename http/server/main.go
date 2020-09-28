@@ -48,6 +48,19 @@ func(mux *ServerMux)DELETE(pattern string,handler handlerFunc){
 	mux.router.Registe(path,handler)
 }
 
+//handler无参数，无返回值
+func(mux *ServerMux)Ticker(space string, handler func()){
+	duration,err := time.ParseDuration(space)
+	if err != nil{
+		log.Println("ticker duration parsed error")
+		return
+	}
+	ticker := time.NewTicker(duration)
+	for range ticker.C{
+		handler()
+	}
+}
+
 func (mux *ServerMux)ServeHTTP(writer http.ResponseWriter, req *http.Request){
 	mux.router.Handle(writer,req)
 }

@@ -5,6 +5,7 @@ import(
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"log"
+	"os"
 )
 
 /*
@@ -28,7 +29,16 @@ var MysqlEngine *gorm.DB
 
 func init(){
 	var err error
-	config := config.NewConfig("./config","dev","json")
+	//获取环境变量
+	env := "master"
+	regin_mod := os.Getenv("REGIN_RUNMODE")
+	if regin_mod == "test"{
+		env = "test"
+	}
+	if regin_mod == "dev"{
+		env = "dev"
+	}
+	config := config.NewConfig("./config",env,"json")
 	db_user := config.GetString("database.db_user")
 	db_host := config.GetString("database.db_host")
 	db_port := config.GetString("database.db_port")

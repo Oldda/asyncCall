@@ -1,0 +1,9 @@
+{
+	"database":{
+		"db_host":"106.75.67.17",
+		"db_port":"3306",
+		"db_user":"root",
+		"db_password":"CgPz7Bf7g1",
+		"db_name":"xiao_crm"
+	}
+}

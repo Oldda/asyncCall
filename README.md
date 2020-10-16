@@ -7,3 +7,5 @@ xxx.com/timer  post application/json
 	"request_url":"https://xxx.com/xxx" 用于执行回调的url
 	"request_params":{"name":"rpc"} json格式参数列表或对象
 }
+1：定时回调给定的url以及参数。
+2：定时检查失败的和未进行的任务，如果达到执行条件，则立即执行。

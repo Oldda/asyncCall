@@ -1,9 +1,9 @@
 {
 	"database":{
-		"db_host":"",
+		"db_host":"wdtxlocalhost.mysql.rds.aliyuncs.com",
 		"db_port":"3306",
-		"db_user":"root",
-		"db_password":"",
+		"db_user":"xiao_crm_user",
+		"db_password":"nawgoj-Byqtys-hahno5",
 		"db_name":"xiao_crm"
 	}
 }
